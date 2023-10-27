@@ -11,7 +11,7 @@
 	function handleAction() {
 		if (!session) {
 			signIn('google');
-		} else if (preferences.preferredCompanyId) {
+		} else if (preferences?.preferredCompanyId) {
 			goto(`/company/${preferences.preferredCompanyId}`);
 		} else {
 			goto(`/form/1`);

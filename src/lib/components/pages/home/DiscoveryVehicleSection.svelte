@@ -1,5 +1,22 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { signIn } from '@auth/sveltekit/client';
+	
 	import { Button } from '$lib/components/shared';
+
+	$: session = $page.data.session;
+	$: preferences = $page.data.preferences;
+
+	function handleAction() {
+		if (!session) {
+			signIn('google');
+		} else if (preferences?.preferredCompanyId) {
+			goto(`/company/${preferences.preferredCompanyId}`);
+		} else {
+			goto(`/form/1`);
+		}
+	}
 </script>
 
 <section id="discovery-vehicle">
@@ -14,7 +31,7 @@
 				Uma plataforma de locação de veículos projetada para atender às suas necessidades
 				específicas, oferecendo uma experiência de aluguel de veículos personalizada e conveniente.
 			</p>
-			<Button href="/form/1">
+			<Button on:click={handleAction}>
 				Descobrir o veículo ideal
 				<img src="/assets/icons/ph_lightbulb.svg" alt="" />
 			</Button>
