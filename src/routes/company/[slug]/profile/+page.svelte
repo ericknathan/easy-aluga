@@ -8,7 +8,10 @@
 	import PaperPlaneTilt from 'phosphor-svelte/lib/PaperPlaneTilt';
 	import Signature from 'phosphor-svelte/lib/Signature';
 	import User from 'phosphor-svelte/lib/User';
+	import ChartLine from 'phosphor-svelte/lib/ChartLine';
+	import Pencil from 'phosphor-svelte/lib/Pencil';
 
+	import { Button } from '$lib/components/shared';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -45,14 +48,21 @@
 				<span>@flaviomendes</span>
 			</div>
 			<div id="profile-actions">
-				<button><User /> Informações pessoais</button>
-				<button><PaperPlaneTilt /> Endereço</button>
+				<a href="/form/1"><User /> Informações pessoais</a>
+				<a href="/form/1"><PaperPlaneTilt /> Endereço</a>
 				<button><CreditCard /> Pagamentos</button>
 				<button><Signature /> Assinatura eletrônica</button>
-				<button><IdentificationBadge /> CNH</button>
+				<a href="/form/1"><IdentificationBadge /> CNH</a>
 				<button><ClipboardText /> Termos de serviço</button>
 				<button><ListMagnifyingGlass /> Política de privacidade</button>
 			</div>
+		</div>
+	</div>
+	<div id="management">
+		<h2>Gerenciar companhia</h2>
+		<div>
+			<Button href="/company/{data.company.id}/dashboard"><ChartLine /> Exibir relatórios</Button>
+			<Button href="/form/1" variant="link"><Pencil /> Editar perfil</Button>
 		</div>
 	</div>
 	<div id="reservations">
@@ -99,24 +109,35 @@
 		justify-content: flex-end;
 	}
 
-	#profile > div #profile-actions button {
+	#profile > div #profile-actions > * {
 		border: none;
 		background-color: transparent;
 		cursor: pointer;
+		text-decoration: none;
+		color: inherit;
+		font-size: 0.875rem;
 	}
 
-	#profile > div #profile-actions button :global(svg) {
+	#profile > div #profile-actions > * :global(svg) {
 		color: var(--primary);
 	}
 
-	#profile > div #profile-actions button + button {
+	#profile > div #profile-actions > * + button,
+	#profile > div #profile-actions > * + a {
 		border-left: 1px solid #0002;
 		padding-left: 1rem;
 	}
 
+	#management,
 	#reservations {
 		display: flex;
 		flex-direction: column;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	#management > div {
+		display: flex;
 		gap: 1rem;
 	}
 
