@@ -170,6 +170,7 @@
 			gap: 2rem;
 
 			padding: 3rem 1.25rem;
+
 			> header {
 				display: flex;
 				align-items: center;
@@ -307,6 +308,26 @@
 						> p {
 							font-weight: 500;
 						}
+					}
+				}
+
+				@media (max-width: 768px) {
+					grid-template-columns: 1fr;
+
+					.card {
+						padding: 1rem;
+					}
+				}
+			}
+
+			@media (max-width: 450px) {
+				> header {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 0.5rem;
+	
+					& > :global(*) {
+						width: 100%;
 					}
 				}
 			}
