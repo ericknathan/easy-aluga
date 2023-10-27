@@ -11,10 +11,11 @@
 	import CarProfile from 'phosphor-svelte/lib/CarProfile';
 	import Lightbulb from 'phosphor-svelte/lib/Lightbulb';
 	import Siren from 'phosphor-svelte/lib/Siren';
+	import { companyData } from '$lib/stores';
 </script>
 
 <div class="container card reservation-card">
-	<img src="/assets/companies/auto-ride/vehicles/{vehicle.image}" alt="" />
+	<img src="/assets/companies/{$companyData.id}/vehicles/{vehicle.image}" alt="" />
 	<header>
 		<h3>{vehicle.title}</h3>
 		<span>ID: {Math.random().toString(36).substr(2, 9)}</span>
