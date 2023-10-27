@@ -1,4 +1,4 @@
-import { prisma } from '$lib/database/client.js';
+import prisma from '$lib/database/client.js';
 import type { UserPreferences } from '@prisma/client';
 
 export async function load(event) {

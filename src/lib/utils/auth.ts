@@ -4,9 +4,9 @@ import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '$env/static/private';
 
 import Google from '@auth/core/providers/google';
 
-import { prisma } from '$lib/database/client';
-import { PrismaAdapter } from '@auth/prisma-adapter';
+import prisma from '$lib/database/client';
 import type { User } from '@auth/core/types';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 
 export const authOptions: SvelteKitAuthConfig = {
 	adapter: PrismaAdapter(prisma),
@@ -23,14 +23,14 @@ export const authOptions: SvelteKitAuthConfig = {
 			}
 		})
 	],
-  callbacks: {
-    async session({ session, user }) {
-      session.user = {
-        ...session.user,
-        id: user.id
-      } as User;
+	callbacks: {
+		async session({ session, user }) {
+			session.user = {
+				...session.user,
+				id: user.id
+			} as User;
 
-      return session;
-    }
-  }
+			return session;
+		}
+	}
 };
