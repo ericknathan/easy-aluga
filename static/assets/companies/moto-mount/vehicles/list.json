@@ -1,0 +1,122 @@
+[
+  {
+    "id": "main",
+    "title": "Honda CG 160 Cargo",
+    "description": "O visual da CG Cargo chegou com tudo para trazer ainda mais atitude para a sua pilotagem. Moderna, essa moto está com um design que deixa ela ainda mais robusta. Esse estilo traz um ar de esportividade e modernidade.",
+    "brand": "Honda",
+    "image": "main.png",
+    "month_value": 1976,
+    "fuel": "elétrico",
+    "tags": [
+      {
+        "name": "Veículo de passeio",
+        "icon": "motorcycle"
+      },
+      {
+        "name": "2 passageiros",
+        "icon": "users"
+      },
+      {
+        "name": "Sistema a bordo",
+        "icon": "airplay"
+      }
+    ],
+    "colors": [
+      "#EBEBEB"
+    ]
+  },
+  {
+    "id": "1",
+    "title": "Honda PCX",
+    "description": "A Honda PCX é uma scooter elétrica elegante e versátil, perfeita para quem busca praticidade e eficiência no trânsito urbano. Com um design aerodinâmico e moderno, a PCX oferece uma experiência de condução suave e confortável, tornando-a uma escolha ideal para deslocamentos diários.",
+    "brand": "Honda",
+    "image": "honda-pcx.png",
+    "month_value": 1317,
+    "fuel": "elétrico",
+    "tags": [
+      {
+        "name": "Veículo de passeio",
+        "icon": "motorcycle"
+      },
+      {
+        "name": "2",
+        "icon": "users"
+      }
+    ],
+    "colors": [
+      "#334160"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Yamaha Neo 125 UBS",
+    "description": "A Yamaha Neo 125 UBS é uma scooter elétrica ágil e compacta, projetada para se adaptar perfeitamente às demandas da vida urbana. Com um desempenho confiável e economia de combustível impressionante, a Neo 125 UBS oferece uma condução suave e confortável, tornando-a uma escolha inteligente para os deslocamentos do dia a dia.",
+    "brand": "Yamaha",
+    "image": "yamaha-neo-125-ubs.png",
+    "fuel": "elétrico",
+    "month_value": 1990,
+    "tags": [
+      {
+        "name": "Veículo de passeio",
+        "icon": "motorcycle"
+      },
+      {
+        "name": "2",
+        "icon": "users"
+      }
+    ],
+    "colors": [
+      "#131313",
+      "#2560B8",
+      "#C8C8C8"
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Yamaha Fazer FZ15 ABS",
+    "description": "A Yamaha Fazer FZ15 ABS é uma motocicleta elétrica poderosa e elegante, projetada para proporcionar uma experiência de condução emocionante e dinâmica. Com um design agressivo e esportivo, a Fazer FZ15 ABS oferece desempenho excepcional e manuseio preciso, tornando-a uma escolha ideal para os entusiastas de motocicletas que buscam emoção e estilo.",
+    "brand": "Yamaha",
+    "image": "yamaha-fazer-fz15-abs.png",
+    "fuel": "elétrico",
+    "month_value": 1955,
+    "tags": [
+      {
+        "name": "Veículo de passeio",
+        "icon": "motorcycle"
+      },
+      {
+        "name": "2",
+        "icon": "users"
+      }
+    ],
+    "colors": [
+      "#2560B8",
+      "#131313",
+      "#C81919"
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Honda CB 650R",
+    "description": "A Honda CB 650R é uma motocicleta elétrica de alto desempenho que combina estilo e potência de forma impressionante. Com um design moderno e agressivo, a CB 650R oferece uma experiência de pilotagem emocionante e responsiva, tornando-a uma escolha perfeita para aqueles que buscam uma motocicleta versátil e poderosa para viagens de longa distância e passeios urbanos.",
+    "brand": "Honda",
+    "image": "honda-cb-650r.png",
+    "month_value": 1026,
+    "fuel": "elétrico",
+    "tags": [
+      {
+        "name": "Veículo de passeio",
+        "icon": "motorcycle"
+      },
+      {
+        "name": "2",
+        "icon": "users"
+      }
+    ],
+    "colors": [
+      "#C8C8C8",
+      "#131313"
+
+    ]
+  }
+]

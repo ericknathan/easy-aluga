@@ -31,5 +31,16 @@
 		"primary_color": "#1F7A8C",
 		"filter": "invert(34%) sepia(65%) saturate(499%) hue-rotate(142deg) brightness(103%) contrast(91%)",
 		"brands": ["Audi", "Mercedes Benz", "Ford", "Tesla", "Jeep"]
+	},
+	{
+		"id": "moto-mount",
+		"name": "Moto Mount",
+		"description": "Acelere sua vida com nossas motos de alta performance. Locação flexível e desempenho excepcional.",
+		"short_description": "Aluguel de motos",
+		"audience": "Motoqueiro",
+		"icon": "🏍️",
+		"primary_color": "#D15B28",
+		"filter": "invert(43%) sepia(18%) saturate(4865%) hue-rotate(349deg) brightness(89%) contrast(83%)",
+		"brands": ["Honda", "Yamaha", "BMW", "Suzuki", "Peugeot"]
 	}
 ]
