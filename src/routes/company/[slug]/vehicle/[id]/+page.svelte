@@ -42,7 +42,7 @@
 			<h2><span>{parseCurrency(vehicle.month_value)}</span><small>/mês</small></h2>
 			<div class="buttons">
 				<Button href="/company/{company.id}" variant="link">Ver semelhantes</Button>
-				<Button href="./success">Alugar veículo</Button>
+				<Button href="/company/{company.id}/vehicle/{vehicle.id}/success">Alugar veículo</Button>
 			</div>
 		</footer>
 	</div>
