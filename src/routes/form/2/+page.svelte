@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { Input } from '$lib/components/shared';
+	import { parseDate } from '$lib/utils';
+	import type { LayoutData } from '../../$types';
 
 	const years = 18 * 365 * 24 * 60 * 60 * 1000;
 	const maxDate = new Date(new Date().getTime() - years);
 
 	$: session = $page.data.session!;
+
+	export let data: LayoutData;
+	$: preferences = data.preferences;
 </script>
 
 <div>
@@ -34,8 +39,17 @@
 		placeholder="314.156.265-35"
 		required
 		mask="###.###.###-##"
+		value={preferences?.cpf || ''}
 	/>
-	<Input type="text" label="CNH" name="cnh" placeholder="20778353404" required minlength={10} />
+	<Input
+		type="text"
+		label="CNH"
+		name="cnh"
+		placeholder="20778353404"
+		required
+		minlength={10}
+		value={preferences?.cnh || ''}
+	/>
 	<Input
 		type="date"
 		label="Data de nascimento"
@@ -44,6 +58,7 @@
 		required
 		min="1900-01-01"
 		max={maxDate.toISOString().split('T')[0]}
+		value={parseDate(preferences?.birthDate) || ''}
 	/>
 	<Input
 		type="tel"
@@ -53,6 +68,7 @@
 		required
 		minlength={10}
 		mask="(##) #####-####"
+		value={preferences?.phone || ''}
 	/>
 </div>
 

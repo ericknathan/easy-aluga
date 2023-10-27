@@ -10,13 +10,13 @@
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
-	const { vehicles } = data;
+	const { vehicles, company } = data;
 
 	const mainVehicle = vehicles.find((vehicle) => vehicle.id == 'main');
 </script>
 
 <svelte:head>
-	<title>Company</title>
+	<title>Easy Aluga | {company.name}</title>
 </svelte:head>
 
 <main class="container">

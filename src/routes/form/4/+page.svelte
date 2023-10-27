@@ -1,9 +1,13 @@
 <script lang="ts">
 	import Select from '$lib/components/shared/Select.svelte';
 	import { companyData } from '$lib/stores';
+	import type { LayoutData } from '../../$types';
 
 	const vehicleBrands = $companyData.brands;
 	const vehicleModels = ($companyData.vehicles || []).map((vehicle) => vehicle.title);
+
+	export let data: LayoutData;
+	$: preferences = data.preferences;
 </script>
 
 <main>
@@ -11,15 +15,33 @@
 		<p>Exibição de preço</p>
 		<fieldset>
 			<label>
-				<input type="radio" name="priceDisplay" value="hourly" required />
+				<input
+					checked={preferences?.priceDisplay === 'hourly'}
+					type="radio"
+					name="priceDisplay"
+					value="hourly"
+					required
+				/>
 				<span>Por hora</span>
 			</label>
 			<label>
-				<input checked type="radio" name="priceDisplay" value="daily" required />
+				<input
+					checked={preferences?.priceDisplay === 'daily' || !preferences?.priceDisplay}
+					type="radio"
+					name="priceDisplay"
+					value="daily"
+					required
+				/>
 				<span>Por dia</span>
 			</label>
 			<label>
-				<input type="radio" name="priceDisplay" value="monthly" required />
+				<input
+					checked={preferences?.priceDisplay === 'monthly'}
+					type="radio"
+					name="priceDisplay"
+					value="monthly"
+					required
+				/>
 				<span>Por mês</span>
 			</label>
 		</fieldset>
@@ -27,16 +49,32 @@
 
 	<div>
 		<p>Marca preferida</p>
-		<Select name="preferredBrand" options={vehicleBrands} />
+		<Select
+			name="preferredBrand"
+			options={vehicleBrands}
+			value={preferences?.preferredBrand && vehicleBrands.includes(preferences?.preferredBrand)
+				? preferences?.preferredBrand
+				: vehicleBrands[0]}
+		/>
 	</div>
 
 	<div>
 		<p>Modelo preferido</p>
-		<Select name="preferredModel" options={vehicleModels} />
+		<Select
+			name="preferredModel"
+			options={vehicleModels}
+			value={preferences?.preferredModel && vehicleModels.includes(preferences?.preferredModel)
+				? preferences?.preferredModel
+				: vehicleModels[0]}
+		/>
 	</div>
 	<div>
 		<p>Quantidade mínima de passageiros</p>
-		<Select name="minPassengers" options={['1', '2', '3', '4', '5', '6', '7']} />
+		<Select
+			name="minPassengers"
+			options={['1', '2', '3', '5', '7']}
+			value={preferences?.minPassengers?.toString()}
+		/>
 	</div>
 
 	<div>
@@ -85,6 +123,7 @@
 					value: 100
 				}
 			]}
+			value={preferences?.distanceRange}
 		/>
 	</div>
 </main>
@@ -150,6 +189,16 @@
 						color: #27272a;
 						text-align: center;
 					}
+				}
+			}
+		}
+
+		@media (max-width: 560px) {
+			grid-template-columns: 1fr;
+
+			> div {
+				&#price-field {
+					grid-column: 1 / 2;
 				}
 			}
 		}

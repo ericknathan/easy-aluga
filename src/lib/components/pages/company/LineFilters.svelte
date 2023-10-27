@@ -1,4 +1,6 @@
 <script>
+	import { page } from '$app/stores';
+
 	import CalendarBlank from 'phosphor-svelte/lib/CalendarBlank';
 	import CaretDown from 'phosphor-svelte/lib/CaretDown';
 	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
@@ -10,6 +12,8 @@
 	import cities from '$lib/database/cities.json';
 	const vehicleBrands = $companyData.brands;
 	const vehicleModels = ($companyData.vehicles || []).map((vehicle) => vehicle.title);
+
+	$: preferences = $page.data.preferences;
 </script>
 
 <form action="" id="filters">
@@ -36,7 +40,7 @@
 		</div>
 		<div>
 			<label for="place">Localidade</label>
-			<input type="text" id="place" list="place-options" placeholder="Nome da cidade" />
+			<input type="text" id="place" list="place-options" placeholder="Nome da cidade" value={preferences?.location} />
 			<datalist id="place-options">
 				{#each cities.SP as city}
 					<option value={city.toLowerCase()}>{city}</option>
@@ -47,7 +51,7 @@
 		<div id="date-inputs">
 			<label for="date-from">Data de locação e devolução</label>
 			<div>
-				<input type="date" name="date-from" id="date-from" />
+				<input type="date" name="date-from" id="date-from" min={new Date().toISOString().split('T')[0]} />
 				<input type="date" name="date-to" id="date-to" />
 			</div>
 			<CalendarBlank />

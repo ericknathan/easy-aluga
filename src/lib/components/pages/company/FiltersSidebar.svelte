@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import { parseCurrency } from "$lib/utils";
 	import PriceGraph from "./PriceGraph.svelte";
 
@@ -13,6 +14,8 @@
 		rangeWidth = `${width + (width > 50 ? 1 : 0)}%`;
 		priceRangeValue = parseCurrency(value * 1000).replace(',00', '');
 	}
+
+	$: preferences = $page.data.preferences;
 </script>
 
 <aside id="filters-sidebar" class="card">
@@ -24,15 +27,15 @@
 		<label for="rent-type">Tipo de aluguel</label>
 		<fieldset>
 			<div>
-				<input type="radio" name="rent-type" id="rent-by-hour" />
+				<input type="radio" name="rent-type" id="rent-by-hour" checked={preferences?.priceDisplay === 'hourly'} />
 				<label for="rent-by-hour">Por hora</label>
 			</div>
 			<div>
-				<input type="radio" name="rent-type" id="rent-by-day" />
+				<input type="radio" name="rent-type" id="rent-by-day" checked={preferences?.priceDisplay === 'daily'} />
 				<label for="rent-by-day">Por dia</label>
 			</div>
 			<div>
-				<input type="radio" name="rent-type" id="rent-by-month" checked />
+				<input type="radio" name="rent-type" id="rent-by-month" checked={preferences?.priceDisplay === 'monthly' || !preferences?.priceDisplay} />
 				<label for="rent-by-month">Por mês</label>
 			</div>
 		</fieldset>

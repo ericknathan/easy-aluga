@@ -6,11 +6,13 @@
 	import { signIn } from '@auth/sveltekit/client';
 
 	$: session = $page.data.session;
+	$: preferences = $page.data.preferences;
 
 	function handleAction() {
-		console.log({ session })
 		if (!session) {
 			signIn('google');
+		} else if (preferences.preferredCompanyId) {
+			goto(`/company/${preferences.preferredCompanyId}`);
 		} else {
 			goto(`/form/1`);
 		}

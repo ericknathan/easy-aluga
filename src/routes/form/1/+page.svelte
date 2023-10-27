@@ -2,6 +2,17 @@
 	import companies from '$lib/database/companies.json';
 	import { companyData } from '$lib/stores';
 	import type { CompanyModel } from '$lib/types';
+	import { onMount } from 'svelte';
+	import type { LayoutData } from '../../$types';
+	
+	export let data: LayoutData;
+	
+	onMount(() => {
+		if(data.preferences?.preferredCompanyId && !$companyData) {
+			const company = companies.find(company => company.id === data.preferences!.preferredCompanyId) as CompanyModel;
+			companyData.setCompany(company);
+		}
+	})
 
 	async function handleSelectPreferredCompanyId(company: CompanyModel) {
 		companyData.setCompany(company);

@@ -71,10 +71,11 @@
 	$: step = steps[currentStepIndex];
 	$: isSubmitting = false;
 
-	async function saveData(data: any) {
-		await new Promise((resolve) => setTimeout(resolve, 5000));
-		console.log({ data });
-		// TODO: save data on database
+	async function saveData(formData: any) {
+		await fetch(`/api/preferences`, {
+			method: 'PATCH',
+			body: JSON.stringify(formData)
+		});
 	}
 
 	async function handleSubmitForm(event: Event) {
@@ -86,16 +87,17 @@
 
 			const data = Object.fromEntries(formData.entries());
 
+			
+			if (currentStepIndex === steps.length - 1) {
+				toast.success('Cadastro realizado com sucesso!');
+				return goto(`/company/${$companyData.id}`);
+			}
+
 			await toast.promise(saveData(data), {
 				loading: 'Salvando dados...',
 				success: 'Dados salvos com sucesso!',
 				error: 'Erro ao salvar dados.'
 			});
-
-			if (currentStepIndex === steps.length - 1) {
-				toast.success('Cadastro realizado com sucesso!');
-				return goto(`/company/${$companyData.id}`);
-			}
 
 			goto(`/form/${currentStepIndex + 2}`);
 		} catch (error) {
