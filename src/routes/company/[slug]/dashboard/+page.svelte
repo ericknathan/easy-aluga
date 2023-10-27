@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { faker } from '@faker-js/faker';
+	import { Faker, pt_BR } from '@faker-js/faker';
+
+	export const faker = new Faker({
+		locale: [pt_BR]
+	});
+
 	import type { ApexOptions } from 'apexcharts';
 	import { onMount } from 'svelte';
 
@@ -53,7 +58,14 @@
 			imageUrl: faker.image.avatar(),
 			name: `${faker.person.firstName()} ${faker.person.lastName()}`,
 			email: faker.internet.email().toLowerCase(),
-			price: faker.commerce.price(150, 2000, 2, 'R$ ').replace('.', ',')
+			price: faker.commerce
+				.price({
+					min: 150,
+					max: 2000,
+					dec: 2,
+					symbol: 'R$ '
+				})
+				.replace('.', ',')
 		}),
 		{ count: 20 }
 	);
@@ -253,7 +265,7 @@
 					&:hover::-webkit-scrollbar-thumb:hover {
 						background-color: #5555;
 					}
-					
+
 					&::-webkit-scrollbar-track,
 					&::-webkit-scrollbar-thumb {
 						background-color: #fff;
