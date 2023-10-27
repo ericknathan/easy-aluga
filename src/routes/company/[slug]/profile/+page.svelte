@@ -29,7 +29,7 @@
 </script>
 
 <svelte:head>
-	<title>Profile</title>
+	<title>Easy Aluga | Meu perfil</title>
 
 	<link
 		rel="stylesheet"
@@ -42,10 +42,10 @@
 	<div id="profile">
 		<h2>Meu perfil</h2>
 		<div>
-			<img src="/assets/images/fake-user-avatar.png" alt="" />
+			<img src={data.session?.user?.image} alt="" />
 			<div>
-				<h3>Flávio Mendes</h3>
-				<span>@flaviomendes</span>
+				<h3>{data.session?.user?.name}</h3>
+				<span>{data.session?.user?.email || `@${data.session?.user?.name?.replace(" ", "").toLowerCase()}`}</span>
 			</div>
 			<div id="profile-actions">
 				<a href="/form/1"><User /> Informações pessoais</a>

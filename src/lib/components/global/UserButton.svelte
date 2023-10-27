@@ -48,7 +48,7 @@
 
     &:focus-visible {
       outline: none;
-      box-shadow: 0px 0px 0px 2px #1a419966;
+      box-shadow: 0px 0px 0px 2px var(--primary-opaque, #1a419966);
     }
   
     > img {
@@ -56,7 +56,7 @@
       height: 2.5rem;
       width: 2.5rem;
   
-      background-color: #1a4199;
+      background-color: var(--primary, #1a4199);
       border-radius: 999px;
     }
 	}
