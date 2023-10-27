@@ -39,7 +39,7 @@
 	<Input
 		type="date"
 		label="Data de nascimento"
-		name="birthdate"
+		name="birthDate"
 		placeholder="24/05/2000"
 		required
 		min="1900-01-01"

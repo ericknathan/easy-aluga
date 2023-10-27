@@ -3,7 +3,7 @@
 	import { companyData } from '$lib/stores';
 	import type { CompanyModel } from '$lib/types';
 
-	async function handleSelectUserType(company: CompanyModel) {
+	async function handleSelectPreferredCompanyId(company: CompanyModel) {
 		companyData.setCompany(company);
 		document.querySelector('body')?.style.setProperty('--primary', company.primary_color);
 
@@ -17,10 +17,10 @@
 		<label style="--primary: {company.primary_color}">
 			<input
 				checked={$companyData.id === company.id}
-				on:change={() => handleSelectUserType(company)}
-				on:focus={() => handleSelectUserType(company)}
+				on:change={() => handleSelectPreferredCompanyId(company)}
+				on:focus={() => handleSelectPreferredCompanyId(company)}
 				type="radio"
-				name="userType"
+				name="preferredCompanyId"
 				value={company.id}
 				required
 			/>

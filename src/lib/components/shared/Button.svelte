@@ -41,10 +41,15 @@
 		box-shadow: 0px 0px 0px 4px var(--primary-opaque);
 	}
 
-	button:hover,
-	button:focus-visible,
-	a:hover,
-	a:focus-visible {
+	button:disabled {
+		cursor: not-allowed;
+		opacity: 0.75;
+	}
+
+	button:not(:disabled):hover,
+	button:not(:disabled):focus-visible,
+	a:not(:disabled):hover,
+	a:not(:disabled):focus-visible {
 		filter: brightness(0.85);
 	}
 

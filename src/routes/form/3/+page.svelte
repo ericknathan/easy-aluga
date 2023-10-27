@@ -5,11 +5,11 @@
 
 <div class="map">
 	<label>
-		<input type="text" placeholder="Insira sua localização" value="Barueri, SP" list="locations" />
+		<input name="location" type="text" placeholder="Insira sua localização" value="São Paulo" list="locations" />
 		<datalist id="locations">
 			{#each cities.SP as city}
 				<option value="{city}">
-					{city}, SP
+					{city}
 				</option>
 			{/each}
 		</datalist>

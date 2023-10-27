@@ -4,8 +4,6 @@
 
 	const vehicleBrands = $companyData.brands;
 	const vehicleModels = ($companyData.vehicles || []).map((vehicle) => vehicle.title);
-
-	$: console.log({ $companyData })
 </script>
 
 <main>
@@ -13,15 +11,15 @@
 		<p>Exibição de preço</p>
 		<fieldset>
 			<label>
-				<input type="radio" name="price" value="hourly" required />
+				<input type="radio" name="priceDisplay" value="hourly" required />
 				<span>Por hora</span>
 			</label>
 			<label>
-				<input checked type="radio" name="price" value="daily" required />
+				<input checked type="radio" name="priceDisplay" value="daily" required />
 				<span>Por dia</span>
 			</label>
 			<label>
-				<input type="radio" name="price" value="monthly" required />
+				<input type="radio" name="priceDisplay" value="monthly" required />
 				<span>Por mês</span>
 			</label>
 		</fieldset>
@@ -29,21 +27,65 @@
 
 	<div>
 		<p>Marca preferida</p>
-		<Select options={vehicleBrands} />
+		<Select name="preferredBrand" options={vehicleBrands} />
 	</div>
 
 	<div>
 		<p>Modelo preferido</p>
-		<Select options={vehicleModels} />
+		<Select name="preferredModel" options={vehicleModels} />
 	</div>
 	<div>
 		<p>Quantidade mínima de passageiros</p>
-		<Select options={['1', '2', '3', '4', '5', '6', '7']} />
+		<Select name="minPassengers" options={['1', '2', '3', '4', '5', '6', '7']} />
 	</div>
 
 	<div>
 		<p>Raio de distância</p>
-		<Select options={['10km', '20km', '30km', '40km', '50km', '60km', '70km', '80km', '90km', '100km']} />
+		<Select
+			name="distanceRange"
+			options={[
+				{
+					label: '10km',
+					value: 10
+				},
+				{
+					label: '20km',
+					value: 20
+				},
+				{
+					label: '30km',
+					value: 30
+				},
+				{
+					label: '40km',
+					value: 40
+				},
+				{
+					label: '50km',
+					value: 50
+				},
+				{
+					label: '60km',
+					value: 60
+				},
+				{
+					label: '70km',
+					value: 70
+				},
+				{
+					label: '80km',
+					value: 80
+				},
+				{
+					label: '90km',
+					value: 90
+				},
+				{
+					label: '100km',
+					value: 100
+				}
+			]}
+		/>
 	</div>
 </main>
 

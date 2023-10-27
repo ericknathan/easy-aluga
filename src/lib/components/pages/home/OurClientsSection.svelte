@@ -92,11 +92,13 @@
 
 	#our-clients #company-cards {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 0.5rem;
-
+		gap: 1rem;
+		
 		margin-top: 3.75rem;
+		width: 100%;
+
+		overflow-x: scroll;
+		scroll-snap-type: x mandatory;
 	}
 
 	#our-clients #company-cards > .company-card {
@@ -108,7 +110,7 @@
 		border-radius: 8px;
 		border: none;
 
-		max-width: calc(33.333% - 0.5rem);
+		min-width: 20.5rem;
 
 		background-color: #ffffff;
 		border-top: 10px solid var(--primary-color);
@@ -116,6 +118,7 @@
 
 		text-decoration: none;
 
+		scroll-snap-align: start;
 		cursor: pointer;
 		transition: all 0.2s ease-in-out;
 	}
@@ -165,6 +168,13 @@
 	}
 
 	@media only screen and (max-width: 1110px) {
+		#our-clients #company-cards {
+			flex-wrap: wrap;
+			justify-content: space-between;
+			overflow: hidden;
+			gap: 0.5rem;
+		}
+
 		#our-clients #company-cards > .company-card {
 			max-width: calc(50% - 0.5rem);
 		}

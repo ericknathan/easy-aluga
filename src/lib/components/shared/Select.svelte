@@ -2,12 +2,13 @@
 	export let options:
 		| string[]
 		| {
-				value: string;
+				value: string | number;
 				label: string;
-		  }[] = [];
+		  }[] = [],
+			name: string;
 </script>
 
-<select {...$$restProps}>
+<select name={name} {...$$restProps}>
 	{#each options as option}
 		{#if typeof option === 'string'}
 			<option value={option}>{option}</option>

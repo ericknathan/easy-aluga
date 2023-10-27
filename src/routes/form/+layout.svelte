@@ -1,4 +1,9 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
+	import { fade } from 'svelte/transition';
+
 	import Brain from 'phosphor-svelte/lib/Brain';
 	import IdentificationCard from 'phosphor-svelte/lib/IdentificationCard';
 	import MapPin from 'phosphor-svelte/lib/MapPin';
@@ -8,11 +13,7 @@
 	import { Header } from '$lib/components/pages/home';
 	import { Button } from '$lib/components/shared';
 
-	import { fade } from 'svelte/transition';
-
-	import { goto } from '$app/navigation';
 	import { companyData } from '$lib/stores';
-	import { onMount } from 'svelte';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
@@ -68,21 +69,41 @@
 
 	$: currentStepIndex = data.step - 1;
 	$: step = steps[currentStepIndex];
+	$: isSubmitting = false;
 
-	function handleSubmitForm(event: Event) {
-		event.preventDefault();
+	async function saveData(data: any) {
+		await new Promise((resolve) => setTimeout(resolve, 5000));
+		console.log({ data });
+		// TODO: save data on database
+	}
 
-		const form = event.target as HTMLFormElement;
-		const formData = new FormData(form);
+	async function handleSubmitForm(event: Event) {
+		try {
+			isSubmitting = true;
 
-		const data = Object.fromEntries(formData.entries());
+			const form = event.target as HTMLFormElement;
+			const formData = new FormData(form);
 
-		if(currentStepIndex === steps.length - 1) {
-			// TODO: save data on database
-			return goto(`/company/${$companyData.id}`)
+			const data = Object.fromEntries(formData.entries());
+
+			await toast.promise(saveData(data), {
+				loading: 'Salvando dados...',
+				success: 'Dados salvos com sucesso!',
+				error: 'Erro ao salvar dados.'
+			});
+
+			if (currentStepIndex === steps.length - 1) {
+				toast.success('Cadastro realizado com sucesso!');
+				return goto(`/company/${$companyData.id}`);
+			}
+
+			goto(`/form/${currentStepIndex + 2}`);
+		} catch (error) {
+			console.error(error);
+			toast.error('Erro ao salvar dados.');
+		} finally {
+			isSubmitting = false;
 		}
-
-		goto(`/form/${currentStepIndex + 2}`);
 	}
 
 	onMount(() => {
@@ -97,12 +118,12 @@
 </script>
 
 <svelte:head>
-	<title>Form</title>
+	<title>Easy Aluga | Formulário de cadastro</title>
 </svelte:head>
 
 <main>
 	<Header />
-	<form class="container" id="content" on:submit={handleSubmitForm}>
+	<form class="container" id="content" on:submit|preventDefault={handleSubmitForm}>
 		<h1>Cadastro de usuário</h1>
 		<span>Siga as etapas para criar seu perfil</span>
 		<div>
@@ -137,8 +158,10 @@
 		</div>
 		<footer>
 			<Button type="button" variant="link">Voltar</Button>
-			<Button type="submit">
-				{#if currentStepIndex === steps.length - 1}
+			<Button type="submit" disabled={isSubmitting}>
+				{#if isSubmitting}
+					Salvando dados
+				{:else if currentStepIndex === steps.length - 1}
 					Finalizar cadastro
 				{:else}
 					Próxima etapa
