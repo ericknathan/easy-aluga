@@ -140,5 +140,25 @@
 				display: none;
 			}
 		}
+
+		@media (max-width: 768px) {
+			> header {
+				flex-direction: column;
+
+				img {
+					width: auto;
+					max-height: 200px;
+					max-width: 100%;
+				}
+			}
+			> div {
+				grid-template-columns: 1fr;
+			}
+
+			> footer {
+				flex-direction: column;
+				align-items: stretch;
+			}
+		}
 	}
 </style>
