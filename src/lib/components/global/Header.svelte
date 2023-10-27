@@ -2,11 +2,6 @@
 	import { page } from '$app/stores';
 	import { companyData } from '$lib/stores';
 
-	let loggedUser = {
-		name: 'Flávio Mendes',
-		avatar: '/assets/images/fake-user-avatar.png'
-	};
-
 	import CaretDown from 'phosphor-svelte/lib/CaretDown';
 	import { onMount } from 'svelte';
 	import HeaderDropdown from './HeaderDropdown.svelte';

@@ -1,12 +1,7 @@
 <script lang="ts">
-	import { Faker, pt_BR } from '@faker-js/faker';
-
-	export const faker = new Faker({
-		locale: [pt_BR]
-	});
-
 	import type { ApexOptions } from 'apexcharts';
 	import { onMount } from 'svelte';
+	import { faker } from '$lib/utils';
 
 	import { Input } from '$lib/components/shared';
 

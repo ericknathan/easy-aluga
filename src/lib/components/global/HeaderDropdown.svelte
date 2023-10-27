@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { companyData } from '$lib/stores';
 
-	import { beforeNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import companies from '$lib/database/companies.json';
-	import { updateCompanyColors } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
@@ -48,10 +46,10 @@
 	out:fly={{ duration: 250, y: -15, opacity: 0 }}
 >
 	{#each companies as company}
-		{@const newUrl = $page.data.url.replace(
-			/\/company\/[a-z0-9-]+/,
-			'/company/' + company.id
-		)}
+		{@const newUrl =
+			$page.data.url.includes('success') || $page.data.url.includes('vehicle')
+				? `/company/${company.id}`
+				: $page.data.url.replace(/\/company\/[a-z0-9-]+/, '/company/' + company.id)}
 		<a href={newUrl} data-sveltekit-preload-data="tap">
 			<label class:active={company.id === $companyData.id}>
 				<input type="radio" />

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { LayoutData } from './$types';
 
 	import { BenefitTag } from '$lib/components/global';
 	import { Button } from '$lib/components/shared';
 	
 	import { parseCurrency } from '$lib/utils';
 
-	export let data: PageData;
+	export let data: LayoutData;
 	const { vehicle, company } = data;
 </script>
 
@@ -42,7 +42,7 @@
 			<h2><span>{parseCurrency(vehicle.month_value)}</span><small>/mês</small></h2>
 			<div class="buttons">
 				<Button href="/company/{company.id}" variant="link">Ver semelhantes</Button>
-				<Button>Alugar veículo</Button>
+				<Button href="./success">Alugar veículo</Button>
 			</div>
 		</footer>
 	</div>

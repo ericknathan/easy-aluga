@@ -70,4 +70,10 @@
 		  }
 		}
   }
+
+	@media print {
+		button {
+			display: none;
+		}
+	}
 </style>
