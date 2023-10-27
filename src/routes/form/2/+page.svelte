@@ -1,8 +1,11 @@
-<script>
+<script lang="ts">
+	import { page } from '$app/stores';
 	import { Input } from '$lib/components/shared';
 
 	const years = 18 * 365 * 24 * 60 * 60 * 1000;
 	const maxDate = new Date(new Date().getTime() - years);
+
+	$: session = $page.data.session!;
 </script>
 
 <div>
@@ -12,6 +15,7 @@
 		name="name"
 		placeholder="João Antônio da Silva"
 		required
+		value={session.user?.name}
 	/>
 	<Input
 		type="email"
@@ -20,6 +24,8 @@
 		placeholder="joao.silva@exemplo.com"
 		required
 		minlength={3}
+		value={session.user?.email}
+		readOnly
 	/>
 	<Input
 		type="text"

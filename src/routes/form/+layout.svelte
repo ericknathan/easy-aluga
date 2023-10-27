@@ -11,8 +11,9 @@
 	import { fade } from 'svelte/transition';
 
 	import { goto } from '$app/navigation';
-	import type { LayoutData } from './$types';
+	import { companyData } from '$lib/stores';
 	import { onMount } from 'svelte';
+	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
 
@@ -59,8 +60,9 @@
 				description: 'Aplicando Inteligência artificial ao perfil',
 				Icon: Brain
 			},
-			title: 'Personalize o sistema com sua cara',
-			description: 'Informe-nos onde você prefere recomendações de carros em localidades próximas.'
+			title: 'Utilização da Easy IA',
+			description:
+				'A Easy IA é uma inteligência artificial para gerar recomendações para você baseado nos dados informados anteriormente. Ao prosseguir, você aceita a utilização dos dados.'
 		}
 	];
 
@@ -75,15 +77,23 @@
 
 		const data = Object.fromEntries(formData.entries());
 
-		console.log({ data, currentStepIndex });
+		if(currentStepIndex === steps.length - 1) {
+			// TODO: save data on database
+			return goto(`/company/${$companyData.id}`)
+		}
+
 		goto(`/form/${currentStepIndex + 2}`);
 	}
 
 	onMount(() => {
-		if(!document.querySelector('body')?.style.getPropertyValue('--primary')) {
-			goto('/form/1')
+		if (!$companyData.id) {
+			return goto('/form/1');
 		}
-	})
+
+		if (!document.querySelector('body')?.style.getPropertyValue('--primary')) {
+			document.querySelector('body')?.style.setProperty('--primary', $companyData.primary_color);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -98,7 +108,11 @@
 		<div>
 			<aside>
 				{#each steps as { button: { name, description, Icon } }, index}
-					<a href="/form/{index + 1}" class:active={currentStepIndex === index} class:disabled={currentStepIndex < index}>
+					<a
+						href="/form/{index + 1}"
+						class:active={currentStepIndex === index}
+						class:disabled={currentStepIndex < index}
+					>
 						<div>
 							<strong>{name}</strong>
 							<small>{description}</small>
@@ -123,7 +137,13 @@
 		</div>
 		<footer>
 			<Button type="button" variant="link">Voltar</Button>
-			<Button type="submit">Próxima etapa</Button>
+			<Button type="submit">
+				{#if currentStepIndex === steps.length - 1}
+					Finalizar cadastro
+				{:else}
+					Próxima etapa
+				{/if}
+			</Button>
 		</footer>
 	</form>
 </main>
@@ -222,7 +242,7 @@
 				main {
 					display: flex;
 					flex-direction: column;
-					
+
 					padding: 1.5rem 2rem;
 
 					h2 {

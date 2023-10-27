@@ -4,7 +4,7 @@
 	export let label: string | undefined = undefined,
 		name: string,
 		placeholder = '',
-		value: string | undefined = '',
+		value: string | undefined | null = '',
 		error: string | undefined = undefined,
 		mask: string | undefined = undefined,
 		hideError = false,

@@ -5,28 +5,11 @@
 	import MapPin from 'phosphor-svelte/lib/MapPin';
 
 	import { Button } from '$lib/components/shared';
+	import { companyData } from '$lib/stores';
 
-	const vehicleModels = ['T-Cross', 'Golf', 'Jetta', 'Virtus', 'Nivus', 'Tiguan'];
-
-	const vehicleBrands = ['Volkswagen', 'Audi', 'Mercedes Benz', 'Ford', 'Tesla', 'Jeep'];
-
-	const cities = [
-		'São Paulo',
-		'Barueri',
-		'Osasco',
-		'Santana de Parnaíba',
-		'Carapicuíba',
-		'Cotia',
-		'Jandira',
-		'Itapecerica da Serra',
-		'Embu das Artes',
-		'Embu Guaçu',
-		'Taboão da Serra',
-		'Cajamar',
-		'Francisco Morato',
-		'Jundiaí',
-		'Várzea Paulista'
-	];
+	import cities from '$lib/database/cities.json';
+	const vehicleBrands = $companyData.brands;
+	const vehicleModels = ($companyData.vehicles || []).map((vehicle) => vehicle.title);
 </script>
 
 <form action="" id="filters">
@@ -55,7 +38,7 @@
 			<label for="place">Localidade</label>
 			<input type="text" id="place" list="place-options" placeholder="Nome da cidade" />
 			<datalist id="place-options">
-				{#each cities as city}
+				{#each cities.SP as city}
 					<option value={city.toLowerCase()}>{city}</option>
 				{/each}
 			</datalist>

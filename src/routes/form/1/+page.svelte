@@ -1,12 +1,14 @@
 <script lang="ts">
 	import companies from '$lib/database/companies.json';
+	import { companyData } from '$lib/stores';
 	import type { CompanyModel } from '$lib/types';
 
-	let selectedCompany: string;
-
-	function handleSelectUserType(company: CompanyModel) {
-		selectedCompany = company.id;
+	async function handleSelectUserType(company: CompanyModel) {
+		companyData.setCompany(company);
 		document.querySelector('body')?.style.setProperty('--primary', company.primary_color);
+
+		const vehiclesResponse = await fetch(`/assets/companies/${company.id}/vehicles/list.json`);
+		vehiclesResponse.json().then((vehicles) => companyData.setVehicles(vehicles));
 	}
 </script>
 
@@ -14,7 +16,7 @@
 	{#each companies as company}
 		<label style="--primary: {company.primary_color}">
 			<input
-				checked={selectedCompany === company.id}
+				checked={$companyData.id === company.id}
 				on:change={() => handleSelectUserType(company)}
 				on:focus={() => handleSelectUserType(company)}
 				type="radio"
