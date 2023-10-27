@@ -5,7 +5,7 @@
 			name: 'Weslley Borges',
 			position: 'Head de Produtos na BRQ',
 			image:
-				'https://media.licdn.com/dms/image/D4D03AQEdqQoiLSXqQw/profile-displayphoto-shrink_800_800/0/1684282613038?e=1700697600&v=beta&t=tjwkjKvaLoXrPk6soTlj-REWn8ELXBETISPNUBnZS5c'
+				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcXkjaA-yleRLJLTOj7yZIOeIOXzhAcD2ItsQxc6pdMA&s'
 		}
 	};
 </script>
