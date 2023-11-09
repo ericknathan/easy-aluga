@@ -32,5 +32,6 @@ export const authOptions: SvelteKitAuthConfig = {
 
 			return session;
 		}
-	}
+	},
+	trustHost: true
 };

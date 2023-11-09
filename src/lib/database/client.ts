@@ -1,9 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-console.log("ACCESSING CONNECTION");
-
 const prismaClientSingleton = () => {
-	console.log("CREATING CONNECTION")
 	return new PrismaClient();
 };
 
