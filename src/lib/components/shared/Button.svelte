@@ -30,6 +30,7 @@
 		font-weight: 500;
 		line-height: 140%;
 		text-decoration: none;
+		text-align: center;
 
 		cursor: pointer;
 		transition: filter 0.2s ease-in-out;
